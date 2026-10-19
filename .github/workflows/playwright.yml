@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - uses: actions/checkout@v4
 
-    
+      # 2. Install Python dependencies
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -28,15 +29,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-
       - name: Install Playwright browsers
         run: python -m playwright install --with-deps chromium
 
 
       - name: Run tests
-        run: pytest
-        continue-on-error: true  
-
+        run: xvfb-run -a pytest
+        continue-on-error: true   
 
       - name: Install Allure CLI
         if: always()
@@ -100,7 +99,7 @@ jobs:
           path: traces/
           if-no-files-found: ignore
 
-      - name: Upload raw test-results (fallback for all Playwright artifacts)
+      - name: Upload raw test-results (fallback)
         if: always()
         uses: actions/upload-artifact@v4
         with:
