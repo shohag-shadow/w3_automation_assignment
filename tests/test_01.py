@@ -23,3 +23,8 @@ def test_01(page: Page):
         expect(header).to_be_visible()
         text = header.inner_text().strip()
         assert len(text) > 0, f"Found an empty heading element: {header}"
+
+    #book section test
+    book_section = page.locator("section").all()
+    assert len(book_section)==1 ,"There is more than one section in this page"
+    expect(book_section[0]).to_be_visible()
