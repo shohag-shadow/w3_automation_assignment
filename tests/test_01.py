@@ -2,6 +2,29 @@ import pytest
 from playwright.sync_api import Page, expect
 
 def test_01(page: Page):
+
+    """Verifies baseline layout and element constraints for the Books to Scrape homepage.
+
+    This test executes an end-to-end integration check against the target sandbox web
+    application to ensure server response validity, structural typography components, 
+    and mandatory interface segments are fully loaded and formatted.
+
+    Validation steps include:
+        1. Confirms the website handles connections correctly (HTTP 200 OK).
+        2. Asserts destination URL mapping doesn't trigger unexpected redirects.
+        3. Validates the window title strictly matches the expected application state.
+        4. Scans and confirms all visible structural typography headers (H1-H6) 
+           contain valid text payloads.
+        5. Validates that book section grid is active on page load.
+
+    Args:
+        page (Page): The standard Playwright sync page fixture context injected by pytest.
+
+    Raises:
+        AssertionError: If network responses fail, text configurations are missing,
+            or required tag hierarchies violate baseline structural expectations.
+    """
+
     target_url = "https://books.toscrape.com/index.html"
     response = page.goto(target_url)
     
