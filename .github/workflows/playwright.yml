@@ -32,14 +32,34 @@ jobs:
       - name: Install Playwright browsers
         run: python -m playwright install --with-deps chromium
 
-
+      # Failing tests now fail the run. The steps below use "if: always()",
+      # so reports are still generated, uploaded, and deployed.
       - name: Run tests
         run: xvfb-run -a pytest
-        continue-on-error: true   
 
       - name: Install Allure CLI
         if: always()
         run: npm install -g allure-commandline
+
+      # Fetch the previous Allure report so its history can be carried forward.
+      # The branch does not exist on the first run, so this step may fail safely.
+      - name: Checkout gh-pages branch
+        if: always()
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Restore Allure history
+        if: always()
+        run: |
+          if [ -d allure-results ] && [ -d gh-pages/allure/history ]; then
+            cp -r gh-pages/allure/history allure-results/history
+            echo "Restored Allure history."
+          else
+            echo "No previous Allure history found; starting fresh."
+          fi
 
       - name: Generate Allure report
         if: always()
@@ -49,7 +69,6 @@ jobs:
           else
             echo "No allure-results directory found; skipping."
           fi
-
 
       - name: Upload HTML report
         if: always()
@@ -107,8 +126,9 @@ jobs:
           path: test-results/
           if-no-files-found: ignore
 
+      # Only deploy on pushes to main/master, never for pull requests.
       - name: Deploy Allure report to GitHub Pages
-        if: always()
+        if: always() && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
