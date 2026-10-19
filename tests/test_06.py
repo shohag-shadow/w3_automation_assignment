@@ -12,8 +12,10 @@ def test_06(page: Page):
 
     expect(page).to_have_url("https://quotes.toscrape.com/login")
 
-    page.locator('input[name="username"]').type("user")
-    page.locator('input[name="password"]').type("password")
+    # page.locator('input[name="username"]').type("user")
+    page.locator('input[name="username"]').press_sequentially("user", delay=500)
+    # page.locator('input[name="password"]').type("password")
+    page.locator('input[name="password"]').press_sequentially("password", delay=500)
     page.get_by_role("button", name="Login").click()
 
     expect(page).to_have_url("https://quotes.toscrape.com/")
