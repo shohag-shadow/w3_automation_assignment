@@ -2,6 +2,28 @@ import pytest
 from playwright.sync_api import Page, expect
 
 def test_05(page: Page):
+    """Verifies product image integrity across the first pages of the Books to Scrape catalog.
+
+    This test walks through the paginated product listing and inspects every book
+    cover image to ensure each one is rendered and carries the attributes the
+    site's markup is expected to provide.
+
+    Validation steps include:
+        1. Confirms each visited page contains at least one product image.
+        2. Asserts every image is visible on screen.
+        3. Asserts every image has a non-empty src attribute.
+        4. Asserts every image has a non-empty alt attribute.
+        5. Asserts every image class list includes the "thumbnail" class.
+        6. Follows the "next" link to the following page, stopping after five pages
+           or when no further page is available.
+
+    Args:
+        page (Page): The standard Playwright sync page fixture context injected by pytest.
+
+    Raises:
+        AssertionError: If a page has no product images, or if an image is missing
+            its src, alt, or expected "thumbnail" class.
+    """
     target_url = "https://books.toscrape.com/index.html"
     page.goto(target_url)
     

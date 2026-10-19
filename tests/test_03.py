@@ -3,6 +3,28 @@ import pytest
 from playwright.sync_api import Page, expect
 
 def test_03(page: Page):
+    """Verifies that book titles and prices stay consistent between the homepage and detail pages.
+
+    This test samples random products from the Books to Scrape homepage, opens each
+    product's detail page, and cross-checks the listing data against the detail data
+    to ensure the catalog presents the same information in both places.
+
+    Validation steps include:
+        1. Confirms the product grid is loaded and the first book card is visible.
+        2. Asserts at least five book cards are available for sampling.
+        3. Randomly selects five distinct book cards from the homepage.
+        4. Opens each selected book and confirms the detail page heading contains
+           the homepage title (trailing dots from truncated titles are ignored).
+        5. Confirms the detail page price matches the homepage price exactly.
+        6. Navigates back and confirms the product grid is restored.
+
+    Args:
+        page (Page): The standard Playwright sync page fixture context injected by pytest.
+
+    Raises:
+        AssertionError: If fewer than five books are listed, or if a title or price
+            differs between the homepage and the detail page.
+    """
     target_url = "https://books.toscrape.com/index.html"
     page.goto(target_url)
 
