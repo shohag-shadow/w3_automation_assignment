@@ -14,7 +14,7 @@ def test_02(page: Page):
            is visible, and navigate back home.
     """
     target_url = "https://books.toscrape.com/index.html"
-    page.goto(target_url)
+    response=page.goto(target_url)
 
     #page actually loding or not
     assert response is not None, "Failed to load the page entirely."
@@ -43,4 +43,5 @@ def test_02(page: Page):
         expect(page_h1).to_have_text(book_title)
         product_info_table = page.locator("table.table-striped")
         expect(product_info_table).to_be_visible()
-        page.goto(target_url)
+        page.go_back()
+        expect(book_locator.first).to_be_visible()
