@@ -1,0 +1,36 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","0","test_05[chromium]","tests","2026-10-19","broken","2026-10-19","","test_05","",""
+"","0","test_06[chromium]","tests","2026-10-19","broken","2026-10-19","","test_06","",""
+"","0","test_04[chromium]","tests","2026-10-19","broken","2026-10-19","","test_04","",""
+"","0","test_03[chromium]","tests","2026-10-19","broken","2026-10-19","","test_03","",""
+"Verifies baseline layout and element constraints for the Books to Scrape homepage.
+
+    This test executes an end-to-end integration check against the target sandbox web
+    application to ensure server response validity, structural typography components, 
+    and mandatory interface segments are fully loaded and formatted.
+
+    Validation steps include:
+        1. Confirms the website handles connections correctly (HTTP 200 OK).
+        2. Asserts destination URL mapping doesn't trigger unexpected redirects.
+        3. Validates the window title strictly matches the expected application state.
+        4. Scans and confirms all visible structural typography headers (H1-H6) 
+           contain valid text payloads.
+        5. Validates that book section grid is active on page load.
+
+    Args:
+        page (Page): The standard Playwright sync page fixture context injected by pytest.
+
+    Raises:
+        AssertionError: If network responses fail, text configurations are missing,
+            or required tag hierarchies violate baseline structural expectations.
+    ","0","test_01[chromium]","tests","2026-10-19","broken","2026-10-19","","test_01","",""
+"Validates that randomly selected books properly load their respective details page.
+
+    Steps:
+        1. Navigate to the sandbox homepage.
+        2. Identify all rendered product cards.
+        3. Randomly select 5 unique book index entries.
+        4. For each selection: capture the display title, navigate to its product 
+           profile, assert the matching top-level H1 header, ensure the spec grid 
+           is visible, and navigate back home.
+    ","0","test_02[chromium]","tests","2026-10-19","broken","2026-10-19","","test_02","",""
