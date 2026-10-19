@@ -1,26 +1,25 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Verifies product image integrity across the first pages of the Books to Scrape catalog.
+"Verifies the login flow on the Quotes to Scrape sandbox site.
 
-    This test walks through the paginated product listing and inspects every book
-    cover image to ensure each one is rendered and carries the attributes the
-    site's markup is expected to provide.
+    This test performs an end-to-end login using the demo credentials and checks
+    that the interface reflects an authenticated session afterwards.
 
     Validation steps include:
-        1. Confirms each visited page contains at least one product image.
-        2. Asserts every image is visible on screen.
-        3. Asserts every image has a non-empty src attribute.
-        4. Asserts every image has a non-empty alt attribute.
-        5. Asserts every image class list includes the ""thumbnail"" class.
-        6. Follows the ""next"" link to the following page, stopping after five pages
-           or when no further page is available.
+        1. Confirms the Login link is visible on the homepage and clicks it.
+        2. Asserts the browser lands on the login page URL.
+        3. Types the username and password character by character with a delay
+           to simulate real keyboard input.
+        4. Submits the form and asserts the user is redirected to the homepage.
+        5. Confirms the Logout link is visible and points to ""/logout"",
+           indicating a successful login.
 
     Args:
         page (Page): The standard Playwright sync page fixture context injected by pytest.
 
     Raises:
-        AssertionError: If a page has no product images, or if an image is missing
-            its src, alt, or expected ""thumbnail"" class.
-    ","1575","test_05[chromium]","tests","2026-10-19","passed","2026-10-19","","test_05","",""
+        AssertionError: If the Login link is missing, a URL redirect is incorrect,
+            or the Logout link is not shown with the expected href after login.
+    ","7621","test_06[chromium]","tests","2026-10-19","passed","2026-10-19","","test_06","",""
 "Verifies that book titles and prices stay consistent between the homepage and detail pages.
 
     This test samples random products from the Books to Scrape homepage, opens each
@@ -42,7 +41,29 @@
     Raises:
         AssertionError: If fewer than five books are listed, or if a title or price
             differs between the homepage and the detail page.
-    ","1246","test_03[chromium]","tests","2026-10-19","passed","2026-10-19","","test_03","",""
+    ","3785","test_03[chromium]","tests","2026-10-19","passed","2026-10-19","","test_03","",""
+"Verifies product image integrity across the first pages of the Books to Scrape catalog.
+
+    This test walks through the paginated product listing and inspects every book
+    cover image to ensure each one is rendered and carries the attributes the
+    site's markup is expected to provide.
+
+    Validation steps include:
+        1. Confirms each visited page contains at least one product image.
+        2. Asserts every image is visible on screen.
+        3. Asserts every image has a non-empty src attribute.
+        4. Asserts every image has a non-empty alt attribute.
+        5. Asserts every image class list includes the ""thumbnail"" class.
+        6. Follows the ""next"" link to the following page, stopping after five pages
+           or when no further page is available.
+
+    Args:
+        page (Page): The standard Playwright sync page fixture context injected by pytest.
+
+    Raises:
+        AssertionError: If a page has no product images, or if an image is missing
+            its src, alt, or expected ""thumbnail"" class.
+    ","4566","test_05[chromium]","tests","2026-10-19","passed","2026-10-19","","test_05","",""
 "Validates that randomly selected books properly load their respective details page.
 
     Steps:
@@ -52,28 +73,7 @@
         4. For each selection: capture the display title, navigate to its product 
            profile, assert the matching top-level H1 header, ensure the spec grid 
            is visible, and navigate back home.
-    ","4222","test_02[chromium]","tests","2026-10-19","passed","2026-10-19","","test_02","",""
-"Verifies the login flow on the Quotes to Scrape sandbox site.
-
-    This test performs an end-to-end login using the demo credentials and checks
-    that the interface reflects an authenticated session afterwards.
-
-    Validation steps include:
-        1. Confirms the Login link is visible on the homepage and clicks it.
-        2. Asserts the browser lands on the login page URL.
-        3. Types the username and password character by character with a delay
-           to simulate real keyboard input.
-        4. Submits the form and asserts the user is redirected to the homepage.
-        5. Confirms the Logout link is visible and points to ""/logout"",
-           indicating a successful login.
-
-    Args:
-        page (Page): The standard Playwright sync page fixture context injected by pytest.
-
-    Raises:
-        AssertionError: If the Login link is missing, a URL redirect is incorrect,
-            or the Logout link is not shown with the expected href after login.
-    ","6726","test_06[chromium]","tests","2026-10-19","passed","2026-10-19","","test_06","",""
+    ","3801","test_02[chromium]","tests","2026-10-19","passed","2026-10-19","","test_02","",""
 "Verifies that every link on the Books to Scrape homepage is valid and reachable.
 
     This test collects all anchor elements from the homepage and requests each
@@ -92,7 +92,7 @@
     Raises:
         AssertionError: If an anchor has no href, or if any linked URL returns a
             status code other than 200.
-    ","3573","test_04[chromium]","tests","2026-10-19","passed","2026-10-19","","test_04","",""
+    ","2690","test_04[chromium]","tests","2026-10-19","passed","2026-10-19","","test_04","",""
 "Verifies baseline layout and element constraints for the Books to Scrape homepage.
 
     This test executes an end-to-end integration check against the target sandbox web
@@ -113,4 +113,4 @@
     Raises:
         AssertionError: If network responses fail, text configurations are missing,
             or required tag hierarchies violate baseline structural expectations.
-    ","623","test_01[chromium]","tests","2026-10-19","passed","2026-10-19","","test_01","",""
+    ","970","test_01[chromium]","tests","2026-10-19","passed","2026-10-19","","test_01","",""
