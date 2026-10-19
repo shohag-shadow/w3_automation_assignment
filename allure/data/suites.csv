@@ -1,8 +1,17 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","0","test_05[chromium]","tests","2026-10-19","broken","2026-10-19","","test_05","",""
-"","0","test_06[chromium]","tests","2026-10-19","broken","2026-10-19","","test_06","",""
-"","0","test_04[chromium]","tests","2026-10-19","broken","2026-10-19","","test_04","",""
-"","0","test_03[chromium]","tests","2026-10-19","broken","2026-10-19","","test_03","",""
+"","1074","test_03[chromium]","tests","2026-10-19","passed","2026-10-19","","test_03","",""
+"","6490","test_06[chromium]","tests","2026-10-19","passed","2026-10-19","","test_06","",""
+"Validates that randomly selected books properly load their respective details page.
+
+    Steps:
+        1. Navigate to the sandbox homepage.
+        2. Identify all rendered product cards.
+        3. Randomly select 5 unique book index entries.
+        4. For each selection: capture the display title, navigate to its product 
+           profile, assert the matching top-level H1 header, ensure the spec grid 
+           is visible, and navigate back home.
+    ","1107","test_02[chromium]","tests","2026-10-19","passed","2026-10-19","","test_02","",""
+"","1362","test_05[chromium]","tests","2026-10-19","passed","2026-10-19","","test_05","",""
 "Verifies baseline layout and element constraints for the Books to Scrape homepage.
 
     This test executes an end-to-end integration check against the target sandbox web
@@ -23,14 +32,5 @@
     Raises:
         AssertionError: If network responses fail, text configurations are missing,
             or required tag hierarchies violate baseline structural expectations.
-    ","0","test_01[chromium]","tests","2026-10-19","broken","2026-10-19","","test_01","",""
-"Validates that randomly selected books properly load their respective details page.
-
-    Steps:
-        1. Navigate to the sandbox homepage.
-        2. Identify all rendered product cards.
-        3. Randomly select 5 unique book index entries.
-        4. For each selection: capture the display title, navigate to its product 
-           profile, assert the matching top-level H1 header, ensure the spec grid 
-           is visible, and navigate back home.
-    ","0","test_02[chromium]","tests","2026-10-19","broken","2026-10-19","","test_02","",""
+    ","461","test_01[chromium]","tests","2026-10-19","passed","2026-10-19","","test_01","",""
+"","2109","test_04[chromium]","tests","2026-10-19","passed","2026-10-19","","test_04","",""
