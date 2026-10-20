@@ -74,7 +74,7 @@ Pin exact versions (`pip freeze`) when you want reproducible installs.
 2. Create and activate a virtual environment.
 
    ```bash
-   python -m venv .venv
+   python3 -m venv .venv
 
    # Linux / macOS
    source .venv/bin/activate
